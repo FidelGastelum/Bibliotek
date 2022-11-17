@@ -22,10 +22,9 @@
   include_once '../Procesos/admin_session.php';
 
   
-   
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-    $sesion = filter_input($_SERVER['user']);
+     Private $sesion = filter_input_array($_SERVER['user']);
     if (isset($sesion)){
         $cliente = $sesion;
     }else{
