@@ -21,33 +21,26 @@
   include_once '../Procesos/admin.php';
   include_once '../Procesos/admin_session.php';
 
-  ?>
-  <?php
-    header('Content-Type: text/html; charset=UTF-8');
-    //Iniciar una nueva sesión o reanudar la existente.
+  
+   
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-    if (isset($_SESSION['user'])){
-        $cliente = $_SESSION['user'];
+    $sesion = filter_input($_SERVER['user']);
+    if (isset($sesion)){
+        $cliente = $sesion;
     }else{
-  header('Location: login.php');//Aqui lo redireccionas al lugar que quieras.
-     die() ;
-
+      header('Location: login.php');//Aqui lo redireccionas al lugar que quieras.
     }
-  ?>
-  <?php
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "biblitek";
-
     $administrador=$_POST['idAdministrador'];
-
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     // Check connection
     if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
+      
     }
     
     $sql = "SELECT N_Admin, A_Usuario, Nombre, Apellido FROM administradores WHERE N_Admin = '$administrador'";
@@ -61,9 +54,7 @@
         $idApellido = $row['Apellido'];
       }
     } else {
-      echo $usuario ;
-      echo '<br>';
-      echo "0 results";
+     
     }
     ?>
 </head>
@@ -107,7 +98,7 @@
         <li><a href="ListaRevicion.php"><i class="fa fa-wrench" aria-hidden="true"></i></a></li>
         <li><a href="ListaCarros.php"><i class="fa fa-car" aria-hidden="true"></i></a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php  echo $_SESSION["user"];?> </i>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php  echo $sesion;?> </i>
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <li><a href="http://localhost/RentaCarroF/Login.php"><i class="fa fa-wrench" aria-hidden="true"></i> Preferencias</a></li>
