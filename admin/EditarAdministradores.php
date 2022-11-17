@@ -22,25 +22,6 @@
   include_once '../Procesos/admin_session.php';
 
   
-    session_start();
-    //Si existe la sesión "cliente"..., la guardamos en una variable.
-     Private $sesion = filter_input_array($_SERVER['user']);
-    if (isset($sesion)){
-        $cliente = $sesion;
-    }else{
-      header('Location: login.php');//Aqui lo redireccionas al lugar que quieras.
-    }
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "biblitek";
-    $administrador=$_POST['idAdministrador'];
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    // Check connection
-    if (!$conn) {
-      
-    }
     
     $sql = "SELECT N_Admin, A_Usuario, Nombre, Apellido FROM administradores WHERE N_Admin = '$administrador'";
     $result = mysqli_query($conn, $sql);
