@@ -20,27 +20,23 @@ class ejecutarSQL {
 class consultasSQL{
     public static function InsertSQL($tabla, $campos, $valores) {
         if (!$consul = ejecutarSQL::consultar("INSERT INTO $tabla ($campos) VALUES($valores)")) {
-            die("Ha ocurrido un error al insertar los datos en la tabla");
+            echo "Ha ocurrido un error al insertar los datos en la tabla";
         }
         return $consul;
     }
     public static function DeleteSQL($tabla, $condicion) {
         if (!$consul = ejecutarSQL::consultar("DELETE FROM $tabla WHERE $condicion")) {
-            die("Ha ocurrido un error al eliminar los registros en la tabla");
+            echo "Ha ocurrido un error al eliminar los registros en la tabla";
         }
         return $consul;
     }
     public static function UpdateSQL($tabla, $campos, $condicion) {
         if (!$consul = ejecutarSQL::consultar("UPDATE $tabla SET $campos WHERE $condicion")) {
-            die("Ha ocurrido un error al actualizar los datos en la tabla");
+            echo "Ha ocurrido un error al actualizar los datos en la tabla";
         }
         return $consul;
     }
-    public static function requestSQL($tabla, $campos){
-        if (!$consulta = ejecutarSQL::consultar("SELECT $campos FROM $tabla")){
-            die("Ha ocurrido un error al Cosultar la tabla los datos en la tabla");
-        }
-    }
+    
     public static function clean_string($val){
         $val=trim($val);
         $val=stripslashes($val);

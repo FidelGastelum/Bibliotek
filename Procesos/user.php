@@ -1,26 +1,13 @@
-
-
-
-
-
-
-
 <?php
-
 
 include_once '../Procesos/user.php';
 include_once '../Procesos/user_session.php';
 include_once '../Procesos/db.php';
 
-
 class User extends DB{
-private $nombre;
-private $password;
-
 
 public function userExists($user, $pass){
-       
-     
+            
     $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE UUser = :user and UPassaword = :pass');
     $query->execute(['user' => $user, 'pass'=> $pass]);
 

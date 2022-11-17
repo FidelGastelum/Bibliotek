@@ -7,9 +7,6 @@ include_once 'Procesos/db.php';
 
 
 class User extends DB{
-private $nombre;
-private $password;
-
 
 public function userExists($user, $pass){
        

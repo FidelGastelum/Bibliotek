@@ -5,7 +5,6 @@ class DB{
     private $db;
     private $user;
     private $password;
-    private $charset;
 
     public function __construct(){
         $this->host     = 'localhost';

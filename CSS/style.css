@@ -14,7 +14,7 @@ body {
 }
 
 .cabezera .menu a
-    ,i {
+,i {
     text-decoration: none;
     color: aliceblue;
 }
@@ -38,7 +38,7 @@ body {
 }
 
 .cabezera .menu .dropdown-container:hover ul,
-    .cabezera .menu .dropdown-containe:hover ul.show {
+.cabezera .menu .dropdown-containe:hover ul.show {
     max-height: 400px;
     background: aliceblue;
 }
@@ -93,23 +93,22 @@ body {
     background: aliceblue;
 }
 
-/*lista de libros*/
+/* lista de libros */
 .lista_libros2 {
     text-align: center;
     background: aliceblue;
     
 }
 
-/*Esilos para el formulario #1 */
+/* Esilos para el formulario #1 */
 .formulrio1 {
     background: aliceblue;
 }
 .formulrio1 .registro {
     text-align: center;
-    
 }
 
-/*Esilos para el formulario login */
+/* Esilos para el formulario login */
 .formularioLogin {
     background: aliceblue;
 }
