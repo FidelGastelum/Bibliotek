@@ -60,14 +60,19 @@
                     $ListaLibros = mysqli_num_rows($consulta);
                     if($ListaLibros>0){
                         while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
+                            $nombreLibro = $fila[NombreL];
+                            $nombreAutor = $fila[NombreA];
+                            $genero = $fila[Genero];
+                            $editorial = $fila[Editorial];
+                            
                     ?>
 
         <tr>
             <td><?php echo "<img src='../".$fila['Img']."' width='100'>";?></td>
-            <td><?php echo $fila['NombreL'];?></td>
-            <td><?php echo $fila['NombreA'];?></td>
-            <td><?php echo $fila['Genero'];?></td>
-            <td><?php echo $fila['Editorial'];?></td>
+            <td><?php echo $nombreLibro;?></td>
+            <td><?php echo $nombreAutor;?></td>
+            <td><?php echo $genero;?></td>
+            <td><?php echo $editorial;?></td>
             <td>
                         <form action="editarLibros.php" method="post">
                             <input type="hidden" name="libro" value="<?=$fila['N_Libro'];?>">

@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="../JS/scripts.js">
     <link rel="stylesheet" href="../CSS/style.css">
     <?php
-    include_once '../Procesos/user.php';
-    include_once '../Procesos/user_session.php'; 
-    header('Content-Type: text/html; charset=UTF-8');
+    include_once '../Procesos/cliente.php';
+    include_once '../Procesos/clienteSesion.php';
     session_start();
     if (isset($_SESSION['user'])){
         $cliente = $_SESSION['user'];
     }else{
   header('Location: login.php');
-     die() ;
+     
     }
   ?>
     <title>Bibliotek</title>

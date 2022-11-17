@@ -20,19 +20,16 @@
 
     if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
-        $idLibro = $row['N_Libro'];
+        $numeroLibro = $row['N_Libro'];
         $img = $row['Img'];
         $nombre = $row['NombreL'];
-        $nombre2 = $row['NombreL'];
         $genero = $row['Genero'];
         $editorial = $row['Editorial'];
         $edicion = $row['Edicion'];
         $autor = $row['NombreA'];
-        $nAutor = $row['Autores_N_autor'];
-
+        $numeroAutor = $row['Autores_N_autor'];
       }
     } else {
-     
     }
     ?>
 <head>
@@ -122,8 +119,7 @@
                           </tr>
                         </tbody>
                       </table>
-                            <input type="hidden" name="nLibro" id="nLibro" valuel="<?=$nombre2?>">
-                            <input type="hidden" name="libro" id="id" value="<?=$idLibro?>">
+                            <input type="hidden" name="libro" id="id" value="<?=$numeroLibro?>">
                             <input type="submit" class="btn btn-custom" value="Actualizar">
                             <button onclick="ListaCarros.php" class="btn btn-custom">Regresar</button>
                         

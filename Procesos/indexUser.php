@@ -1,8 +1,8 @@
 <?php
 
 
-include_once 'Procesos/user_index.php';
-include_once 'Procesos/index_session.php';
+include_once 'Procesos/index.php';
+include_once 'Procesos/indexUser.php';
 include_once 'Procesos/db.php';
 
 

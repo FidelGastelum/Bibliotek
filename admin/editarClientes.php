@@ -18,10 +18,10 @@
   <link href="../CSS/Tablas.css" rel="stylesheet" type="text/css">
   <?php 
   
-  include_once '../Procesos/admin.php';
-  include_once '../Procesos/admin_session.php';
-
   
+  include '../Procesos/configServer.php';
+  include '../Procesos/consulSQL.php';
+
     header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
     session_start();
@@ -31,9 +31,7 @@
     }else{
   header('Location: login.php');//Aqui lo redireccionas al lugar que quieras.
      
-
     }
-  
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -47,70 +45,56 @@
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
+    $verificar=  ejecutarSQL::consultar("SELECT  N_Usuario, NombreU, Apellido, Direccion, FNacimiento FROM usuario WHERE N_Usuario='".$usuario."'");
+    $result = mysqli_num_rows($verificar);
     
-    $sql = "SELECT N_Usuario, NombreU, Apellido, Direccion, FNacimiento FROM usuario WHERE N_Usuario = '$usuario'";
-    $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
-  
-        $id = $row['N_Usuario'];
+        $numeroCliente = $row['N_Usuario'];
         $nombre = $row['NombreU'];
         $apellido = $row['Apellido'];
         $direccion = $row['Direccion'];
-        $fnacimiento = $row['FNacimiento'];
-
-
-          
+        $fechaDeNacimiento = $row['FNacimiento'];
       }
     } else {
-      echo $usuario ;
-      echo '<br>';
-      echo "0 results";
+      
     }
 
 
     ?>
 </head>
+<header> 
+    <div class="cabezera">
+        <div class="row">
+            <div class="logo col-4"><h1>Bibliotek</h1></div>
+            <div class="menu row col-8">
+                <div class="col-8"></div>
+                <div class="col-1"><a href="#infor_1"><i class="fa fa-home" aria-hidden="true"></i>Home</a> </div>
+                <div class="col-1"><a href="listaAdministradores.php"><i class="fa-solid fa-book"></i>Lista admins</a></div>
+                <div class="col-1"><a href="listaUsuarios.php"><i class="fa-solid fa-map-location-dot"></i>Lista usuarios</a> </div>
+                <div class="col-1"><a href="Libros.php"><i class="fa-solid fa-map-location-dot"></i>Lista libros</a> </div>
+                <div class="dropdown-container col-1">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    <ul>
+                        <li><a href="http://localhost/Bibliotek/login.html">Iniciar sesion</a></li>
+                        <li><a href="http://localhost/Bibliotek/registro.php">Crear usuario</a></li>
+                        <li>Ayuda</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</header>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#myPage">TeslaCarRent</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-        <li><a href="ListaUser.php"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
-        <li><a href="ListaRevicion.php"><i class="fa fa-wrench" aria-hidden="true"></i></a></li>
-        <li><a href="ListaCarros.php"><i class="fa fa-car" aria-hidden="true"></i></a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php  echo $_SESSION["user"];?> </i>
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-          <li><a href="http://localhost/RentaCarroF/Login.php"><i class="fa fa-wrench" aria-hidden="true"></i> Preferencias</a></li>
-            <li><a href="http://localhost/RentaCarrof/Registro.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar sesión</a></li>
-            <li><a href="#"><i class="fa fa-question" aria-hidden="true"></i> Ayuda</a></li>
-          </ul>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+
 
 <div class="container">
         <div class="row">
             <div class="col-1 "></div>
             <div class="formulario col-10">
                <div class="registroU">
-                    <form action="Actualizar.php" method="post">
+                    <form action="../actualizarCliente.php" method="post">
                       <table> 
                         <thead >
                           <tr class="Heading">
@@ -137,13 +121,13 @@
                           </tr> 
                           <tr>
                             <td><h6>fecha de nacimiento: </h6></td>
-                            <td><?php echo $fnacimiento;?></td>
+                            <td><?php echo $fechaDeNacimiento;?></td>
                             <td><input type="text" name="Marca" id="Ma" ></td>
                           </tr> 
                          
                         </tbody>
                       </table>
-                            <input type="hidden" name="usuario" id="id" value="<?=$N_Usuario?>">
+                            <input type="hidden" name="usuario" id="id" value="<?=$numeroCliente?>">
                             <input type="submit" class="btn btn-custom" value="Actualizar">
                             <button onclick="ListaCarros.php" class="btn btn-custom">Regresar</button>
                         

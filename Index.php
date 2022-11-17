@@ -1,7 +1,7 @@
 <?php
 
-include_once 'Procesos/user_index.php';
-include_once 'Procesos/index_session.php';
+include_once 'Procesos/indexUser.php';
+include_once 'Procesos/index.php';
 
 
 $userSession = new UserSession();
@@ -10,7 +10,7 @@ $user = new User();
 if(isset($_SESSION['user'])){
     echo "Hay sesión";
     $user->setUser($userSession->getCurrentUser());
-    header('Location: Usuario/home.php');
+    header('Location: Usuario/homecliente.php');
 }else if(isset($_POST['user']) && isset($_POST['pass'])){
     echo "Validación de login";
 
@@ -23,7 +23,7 @@ if(isset($_SESSION['user'])){
         $userSession->setCurrentUser($userForm);
         $user->setUser($userForm);
 
-        header('Location:  Usuario/home.php');
+        header('Location:  Usuario/homecliente.php');
     }else{
         echo "nombre de usuario y/o password incorrecto";
         $errorLogin = "Nombre de usuario y/o password es incorrecto";

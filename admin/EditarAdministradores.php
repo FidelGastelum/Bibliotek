@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>TeslaCarRent</title>
+  
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link  rel="icon"   href="Img/logo.png" type="image/png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -20,18 +19,16 @@
   
   include_once '../Procesos/admin.php';
   include_once '../Procesos/admin_session.php';
-
-  
     
     $sql = "SELECT N_Admin, A_Usuario, Nombre, Apellido FROM administradores WHERE N_Admin = '$administrador'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
-        $idAdmin = $row['N_Admin'];
-        $idUsuario = $row['A_Usuario'];
-        $idNombre = $row['Nombre'];
-        $idApellido = $row['Apellido'];
+        $numeroAdministrador = $row['N_Admin'];
+        $usuario = $row['A_Usuario'];
+        $nombre = $row['Nombre'];
+        $Apellido = $row['Apellido'];
       }
     } else {
      
@@ -60,38 +57,6 @@
     </div>
 </header>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#myPage">TeslaCarRent</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-        <li><a href="ListaUser.php"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
-        <li><a href="ListaRevicion.php"><i class="fa fa-wrench" aria-hidden="true"></i></a></li>
-        <li><a href="ListaCarros.php"><i class="fa fa-car" aria-hidden="true"></i></a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php  echo $sesion;?> </i>
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-          <li><a href="http://localhost/RentaCarroF/Login.php"><i class="fa fa-wrench" aria-hidden="true"></i> Preferencias</a></li>
-            <li><a href="http://localhost/RentaCarrof/Registro.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar sesión</a></li>
-            <li><a href="#"><i class="fa fa-question" aria-hidden="true"></i> Ayuda</a></li>
-          </ul>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <div class="container">
         <div class="row">
             <div class="col-1 "></div>
@@ -109,22 +74,22 @@
                         <tbody>
                         <tr>
                             <td><h6>Usuario:</h6></td>
-                            <td> <?php echo $idUsuario;?></td>
+                            <td> <?php echo $Usuario;?></td>
                             <td><input type="text" name="usuario"></td>
                           </tr>
                           <tr>
                             <td><h6>Nombre:</h6></td>
-                            <td> <?php echo $idNombre;?></td>
+                            <td> <?php echo $Nombre;?></td>
                             <td><input type="text" name="nombre"></td>
                           </tr>
                           <tr>
                             <td><h6>Apellido: </h6></td>
-                            <td><?php echo $idApellido;?></td>
+                            <td><?php echo $Apellido;?></td>
                             <td><input type="text" name="Apellido"></td>
                           </tr>  
                         </tbody>
                       </table>
-                            <input type="hidden" name="N_Admin" id="id" value="<?=$idAdmin?>">
+                            <input type="hidden" name="N_Admin" id="id" value="<?=$numeroAdministrador?>">
                             <input type="submit" class="btn btn-custom" value="Actualizar">
                             <button onclick="ListaCarros.php" class="btn btn-custom">Regresar</button>
                         

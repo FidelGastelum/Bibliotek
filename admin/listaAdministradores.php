@@ -57,18 +57,18 @@ error_reporting(0);
                   $ListaUsuarios = mysqli_num_rows($consulta);
                   if($ListaUsuarios>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
-                        $id = $fila[N_Admin];
+                        $NumeroAdministrador = $fila[N_Admin];
                         $usuario = $fila[A_Usuario];
-                        $nombreU = $fila[Nombre];
+                        $nombre = $fila[Nombre];
                         $apellido = $fila[Apellido];
                 ?>
                 <tr>
                     <td><?php echo $usuario;?></td>
-                    <td><?php echo $nombreU;?></td>
+                    <td><?php echo $nombre;?></td>
                     <td><?php echo $apellido;?></td>
                     <td>
                         <?php 
-                        if($id == 1){
+                        if($NumeroAdministrador == 1){
                             
                         }else{?>
                             <form action="../Procesos/EditarAdministradores.php" method="post">

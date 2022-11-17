@@ -57,26 +57,27 @@ error_reporting(0);
                   $ListaUsuarios = mysqli_num_rows($consulta);
                   if($ListaUsuarios>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
-                        $nombreU = $fila[NombreU];
+                        $numeroCliente = $fila[N_Usuario];
+                        $nombre = $fila[NombreU];
                         $apellido = $fila[Apellido];
-                        $dir = $fila[Direccion];
-                        $fecha = $fila[FNacimiento];
+                        $direccion = $fila[Direccion];
+                        $fechaDeNacimiento = $fila[FNacimiento];
                         
 
                 ?>
                 <tr>
                     <td><?php echo $nombreU;?></td>
                     <td><?php echo $apellido;?></td>
-                    <td><?php echo $dir;?></td>
-                    <td><?php echo $fecha;?></td>
+                    <td><?php echo $direccion;?></td>
+                    <td><?php echo $fechaDeNacimiento;?></td>
                     <td>
-                        <form action="Editar.php" method="post">
+                        <form action="editarClientes.php" method="post">
                             <input type="hidden" name="idUsuario" value="<?=$fila['N_Usuario'];?>">
                             <input type="submit" class="btn btn-custom" value="Editar">
                         </form>
                     </td>
                     <td>
-                        <form action="Eliminar.php" method="post">
+                        <form action="../Procesos/eliminarClientes.php" method="post">
                             <input type="hidden" name="usuario" value="<?=$fila['N_Usuario'];?>">
                             <input type="submit" class="btn btn-custom" value="Eliminar" onclick='return confirmacion()'>
                         </form>

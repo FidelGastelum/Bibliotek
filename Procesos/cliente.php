@@ -1,7 +1,7 @@
 <?php
 
-include_once '../Procesos/user.php';
-include_once '../Procesos/user_session.php';
+include_once '../Procesos/cliente.php';
+include_once '../Procesos/clienteSesion.php';
 include_once '../Procesos/db.php';
 
 class User extends DB{
