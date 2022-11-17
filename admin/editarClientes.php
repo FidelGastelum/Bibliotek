@@ -21,8 +21,7 @@
   include_once '../Procesos/admin.php';
   include_once '../Procesos/admin_session.php';
 
-  ?>
-  <?php
+  
     header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
     session_start();
@@ -31,11 +30,10 @@
         $cliente = $_SESSION['user'];
     }else{
   header('Location: login.php');//Aqui lo redireccionas al lugar que quieras.
-     die() ;
+     
 
     }
-  ?>
-  <?php
+  
     $servername = "localhost";
     $username = "root";
     $password = "";
