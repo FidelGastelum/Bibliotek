@@ -34,8 +34,8 @@
 </header>
 <body>
     <div class="listaPrestamos">
-        <h2>Lista de prestamos activos</h2>
-        <h4><a href="historialPrestamos.php">Historial de prestamos</a></h4>
+        <h2>Historial de prestamos</h2>
+        <h4><a href="homeAdministrador.php">Prestamos activos</a></h4>
     <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -46,8 +46,6 @@
                     <th>Usuario</th>
                     <th>administrador</th>
                     <th>Estado</th>
-                    <th>Autorizar</th>
-                    <th>Regresar libro</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +54,7 @@
                   include '../Procesos/consulSQL.php';
                   $x = "Cerrado";
                   $consulta= ejecutarSQL::consultar("SELECT N_Prestamo, FSalida, FEntrada, Estado, NombreL, NombreU, uApellido, A_Usuario FROM prestamo, libros, usuario, administradores 
-                  where N_Libro = libros_N_Libro and usuario_N_Usuario = N_Usuario and N_Admin = administradores_N_Admin and Estado != '".$x."'");
+                  where N_Libro = libros_N_Libro and usuario_N_Usuario = N_Usuario and N_Admin = administradores_N_Admin and Estado  = '".$x."'");
                   $ListaUsuarios = mysqli_num_rows($consulta);
                   if($ListaUsuarios>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
@@ -77,38 +75,6 @@
                     <td><?php echo $nombreUsuario. " " .$apellidoUsuario ;?></td>
                     <td><?php echo $administrador;?></td>
                     <td><?php echo $estado;?></td>
-                    <td>
-                        <?php 
-                        if($id == 1){
-                            
-                        }else{?>
-                            <form action="../Procesos/autorizarPrestamo.php" method="post">
-                            <input type="hidden" name="N_Prestamo" value="<?=$fila['N_Prestamo'];?>">
-                            <input type="submit" class="btn btn-custom" value="Autorizar">
-                        </form>
-                        <?php 
-
-                        }
-                        
-                        ?>
-                        
-                    </td>
-                    <td>
-                        <?php 
-                        if($id == 1){
-                            
-                        }else{?>
-                        <form action="../Procesos/regresarPrestamo.php" method="post">
-                            <input type="hidden" name="N_Prestamo" value="<?=$fila['N_Prestamo'];?>">
-                            <input type="submit" class="btn btn-custom" value="Regresar" onclick='return confirmacion()'>
-                        </form>
-                        <?php 
-
-                        }
-                        
-                        ?>
-                    </td>
-
                 </tr>
                 <?php
                       }
@@ -136,14 +102,4 @@
         </div>
         </div>
 </footer>
-<script>
- function confirmacion(){
-    var respuesta = confirm("¿Desea regrsar el libro?");
-    if (respuesta == true) {
-      return true;
-    }else{
-      return false;
-    }
-}
-</script>
 </html>
