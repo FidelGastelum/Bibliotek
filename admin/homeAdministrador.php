@@ -52,6 +52,7 @@
             </thead>
             <tbody>
                 <?php
+                
                   include '../Procesos/configServer.php';
                   include '../Procesos/consulSQL.php';
                   $x = "Cerrado";
@@ -60,7 +61,7 @@
                   $ListaUsuarios = mysqli_num_rows($consulta);
                   if($ListaUsuarios>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
-                        $id = $fila['N_Prestamo'];
+                        $nuemeroPrestamo = $fila['N_Prestamo'];
                         $fechaSalida = $fila['FSalida'];
                         $fechaRegreso = $fila['FEntrada'];
                         $nombreLibro = $fila['NombreL'];
@@ -70,7 +71,7 @@
                         $estado = $fila['Estado'];
                 ?>
                 <tr>
-                    <td><?php echo $id;?></td>
+                    <td><?php echo $nuemeroPrestamo;?></td>
                     <td><?php echo $fechaSalida;?></td>
                     <td><?php echo $fechaRegreso;?></td>
                     <td><?php echo $nombreLibro;?></td>
