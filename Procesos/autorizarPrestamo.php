@@ -6,10 +6,6 @@
   include '../Procesos/consulSQL.php';
 
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "biblitek";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -17,12 +13,12 @@
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    $id=$_POST['N_Prestamo'];
+    $numeroPrestamo=$_POST['N_Prestamo'];
     $estado = "Activo"; 
 
     
     
-    $sql = "UPDATE prestamo SET Estado = '$estado' WHERE N_Prestamo = '$id'";
+    $sql = "UPDATE prestamo SET Estado = '$estado' WHERE N_Prestamo = '$numeroPrestamo'";
     $result = mysqli_query($conn, $sql);
 
     if($result){

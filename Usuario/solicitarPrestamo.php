@@ -35,19 +35,41 @@
 <table>
     <tr>
         <th><br></th>
+        <?php
+        $usuario= $_POST['Prestamo'];
+        $libro = $_POST['N_Libro'];
+
+        
+        include '../Procesos/configServer.php';
+        include '../Procesos/consulSQL.php';
+        $consulta= ejecutarSQL::consultar("SELECT DISTINCT N_Libro, Img, NombreL, NombreA, Genero, Editorial,Autores_N_autor, Disponibilidad from libros, autores
+        where N_Libro = '$libro' limit 1");
+        $ListaLibros = mysqli_num_rows($consulta);
+        if($ListaLibros>0){
+            while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
+        ?>
+        <th>
+        <?php echo "<img src='../".$fila['Img']."' style='height: 400px;'>";?>
+        </th>
         
         <th>
-            <img src="../img/My hero academia.jpg" width="" height="400px">
-        </th>
-        <th>
-            <h3>Titulo: </h3>
-            <h5>Autor: </h5>
-            <h5>Genero : </h5>
-            <h5>Editorio: </h5>
-            <h5>Edicion: </h5>
+            <h3><?php echo $fila['NombreL'];?> </h3>
+            <h5>Autor: <?php echo $fila['NombreA'];?></h5>
+            <h5>Genero : <?php echo $fila['Genero'];?></h5>
+            <h5>Editorio: <?php echo $fila['Editorial'];?></h5>
+            <form action="../Proceso/solicitarPrestamo.php" method="post">
+                <input type="date" name="fecha">
+                <input type="hidden" name="Prestamo"  valuel="<?=$usuario?>">
+                <input type="hidden" name="N_Libro" value="<?=$fila['N_Libro'];?>">
+                <input type="submit" class="btn btn-custom" value="Solicitar prestamo">
+            </form>
         </th>
 
     </tr>
+    <?php
+                        }
+                        }
+            ?>
 </table>    
 
 </body>

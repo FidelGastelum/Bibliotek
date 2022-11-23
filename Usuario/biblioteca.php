@@ -70,8 +70,8 @@
                     <div><?php echo $fila['Edicion'];?></div>
                     <div>
                         <form action="solicitarPrestamo.php" method="post">
-                            <input type="hidden" name="Prestamo"  valuel="<?=$$cliente?>">
-                            <input type="hidden" name="libro"  value="<?=$idLibro?>">
+                            <input type="hidden" name="Prestamo"  valuel="<?=$cliente?>">
+                            <input type="hidden" name="N_Libro" value="<?=$fila['N_Libro'];?>">
                             <input type="submit" class="btn btn-custom" value="Solicitar prestamo">
                         </form>
                     </div>
